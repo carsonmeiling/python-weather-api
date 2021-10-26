@@ -1,12 +1,15 @@
 import requests, json 
 
+with open('key.json', 'r') as f:
+    json_object = json.loads(f.read())
+
+
 # api documentation 
 # https://openweathermap.org/current#current_JSON
 
 base_url = "http://api.openweathermap.org/data/2.5/weather?"
-api_key = "83e53fab7ec8e6fad34a75923d8950ae"
 city_name = input("Enter city name : ")
-
+api_key = json_object["api_key"]
 complete_url = base_url + "appid=" + api_key + "&q=" + city_name
 
 response = requests.get(complete_url)
